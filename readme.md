@@ -35,7 +35,7 @@
 - **Delete Kubernetes:**
 
     ```
-    kube delete --all
+    minikube delete --all
     
     ```
 
