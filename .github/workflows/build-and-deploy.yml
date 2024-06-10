@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./vault_demo  # Replace with the subdirectory if your project is not in the root
+        working-directory: ./vault-demo  # Replace with the subdirectory if your project is not in the root
 
     steps:
       - name: Checkout code
@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-artifact
-          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml  # Adjust the path to your generated YAML file
+          path: ${{ github.workspace }}/vault-demo/dekorate_k8s_output/*.yml  # Adjust the path to your generated YAML file
 
   deploy:
     runs-on: ubuntu-latest
@@ -68,9 +68,9 @@ jobs:
 
       - name: Copy artifacts to target repository
         run: |
-          mkdir -p ${{ github.workspace }}/argocd_repo/vault_demo
+          mkdir -p ${{ github.workspace }}/argocd_repo/vault-demo
           ls ${{ github.workspace }}/argocd_repo
-          cp -f ${{ github.workspace }}/*.yml ./argocd_repo/vault_demo/vault_demo.yaml  # Adjust the path as needed
+          cp -f ${{ github.workspace }}/*.yml ./argocd_repo/vault-demo/vault-demo.yaml  # Adjust the path as needed
 
       - name: Configure Git
         run: |

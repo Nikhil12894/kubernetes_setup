@@ -14,7 +14,7 @@ import io.dekorate.kubernetes.annotation.Probe;
 
 @SpringBootApplication
 @KubernetesApplication( // will generate a kubernetes manifest file
-  name = "vault_demo",
+  name = "vault-demo",
   livenessProbe = @Probe(httpActionPath="/actuator/health/liveness"),
   readinessProbe = @Probe(httpActionPath="/actuator/health/readiness"),
   envVars = {
@@ -53,7 +53,7 @@ import io.dekorate.kubernetes.annotation.Probe;
 )
 @DockerBuild( // will use this registry and image in generated kubernetes manifest file
   registry = "ghcr.io/nikhil12894",
-  image = "ghcr.io/nikhil12894/vault_demo"
+  image = "ghcr.io/nikhil12894/vault-demo"
 )
 public class VaultDemoApplication {
 

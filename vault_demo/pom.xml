@@ -12,7 +12,7 @@
 	<groupId>com.nk</groupId>
 	<artifactId>vault_demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vault_demo</name>
+	<name>vault-demo</name>
 	<description>Demo project to access vault data in local and in kubernetes</description>
 	<properties>
 		<java.version>21</java.version>
