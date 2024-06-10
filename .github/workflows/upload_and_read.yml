@@ -10,20 +10,20 @@ jobs:
     steps:
       - name: Generate data
         run: echo "Some data" > data.txt
-      - name: Upload artifact
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: data.txt
+#       - name: Upload artifact
+#         if: success()
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: my-artifact
+#           path: data.txt
 
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: my-artifact
-      - name: Read data
-        run: cat data.txt
+#   job2:
+#     needs: job1
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Download artifact
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: my-artifact
+#       - name: Read data
+#         run: cat data.txt

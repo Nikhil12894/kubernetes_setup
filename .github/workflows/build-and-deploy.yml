@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-artifact
-          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/kubernetes.yml  # Adjust the path to your generated YAML file
+          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml  # Adjust the path to your generated YAML file
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,12 +55,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifact
+
+      - name: Unzip artifact
+        run: |
+          unzip -q ${{ github.workspace }}/build-artifact.zip -d ${{ github.workspace }}/artifact
+          ls ${{ github.workspace }}/artifact  # List contents to verify extraction
+
       - name: Find YAML file
         run: |
-          find ./vault_demo/dekorate_k8s_output -name '*.yml'
+          find ${{ github.workspace }}/artifact -name '*.yml'
           
       - name: Read data
-        run: cat kubernetes.yml
+        run: cat ${{ github.workspace }}/artifact/*.yml
 
       # - name: Checkout target repository
       #   uses: actions/checkout@v3
