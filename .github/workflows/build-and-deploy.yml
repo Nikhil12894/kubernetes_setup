@@ -56,7 +56,7 @@ jobs:
         with:
           name: build-artifact
       - name: Read data
-        run: cat ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml
+        run: cat ${{ github.workspace }}/vault_demo/dekorate_k8s_output/kubernetes.yml
 
       # - name: Checkout target repository
       #   uses: actions/checkout@v3
