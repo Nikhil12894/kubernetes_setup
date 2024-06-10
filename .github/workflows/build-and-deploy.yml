@@ -55,28 +55,30 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifact
+      - name: Read data
+        run: cat ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml
 
-      - name: Checkout target repository
-        uses: actions/checkout@v3
-        with:
-          repository: Nikhil12894/argocd_repo  # Replace with the owner and name of the target repo
-          path: ./vault_demo
-          ref: main
-          token: ${{ secrets.PAT_TOKEN }}  # Use the personal access token for authentication
+      # - name: Checkout target repository
+      #   uses: actions/checkout@v3
+      #   with:
+      #     repository: Nikhil12894/argocd_repo  # Replace with the owner and name of the target repo
+      #     path: ./vault_demo
+      #     ref: main
+      #     token: ${{ secrets.PAT_TOKEN }}  # Use the personal access token for authentication
 
-      - name: Copy artifacts to target repository
-        run: cp ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml ./vault_demo  # Adjust the path as needed
+      # - name: Copy artifacts to target repository
+      #   run: cp ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml ./vault_demo  # Adjust the path as needed
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: Configure Git
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit and push changes
-        run: |
-          cd target-repo
-          git add .
-          git commit -m "Add generated YAML file"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      # - name: Commit and push changes
+      #   run: |
+      #     cd target-repo
+      #     git add .
+      #     git commit -m "Add generated YAML file"
+      #     git push
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
