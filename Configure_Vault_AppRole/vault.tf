@@ -44,9 +44,9 @@ output "approle_secret_id" {
 }
 
 # code to configure secrate and config map
-resource "kubernetes_secret" "vault_springboot_secret" {
+resource "kubernetes_secret" "vault-springboot-secrate" {
   metadata {
-    name = "vault-springboot-secret"
+    name = "vault-springboot-secrate"
   }
 
   data = {

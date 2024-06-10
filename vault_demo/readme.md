@@ -60,10 +60,14 @@ docker login ghcr.io --username github-account
 
 #### Create Github Image pull secrate
 
-- convert github token to base64
-- then use it in belo script
+- convert github token to base64 **with github username**
 ```sh
- echo -n  '{"auths":{"ghcr.io":{"auth":"<base64 converted github token>"}}}' | base64
+ echo -n "your-github-username:your-personal-access-token" | base64
+```
+- then use it in belo script
+
+```sh
+ echo -n  '{"auths":{"ghcr.io":{"auth":"<tocken from above command>"}}}' | base64
 ```
 - now pest it in secrate file with key .dockerconfig
     ```yml
