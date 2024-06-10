@@ -42,3 +42,28 @@ output "approle_secret_id" {
   value     = vault_approle_auth_backend_role_secret_id.app_role_secret_id.secret_id
   sensitive = true
 }
+
+# code to configure secrate and config map
+resource "kubernetes_secret" "vault_springboot_secret" {
+  metadata {
+    name = "vault-springboot-secret"
+  }
+
+  data = {
+    VAULT_KEY = "${vault_approle_auth_backend_role_secret_id.app_role_secret_id.secret_id}"
+  }
+}
+
+resource "kubernetes_config_map" "cluster-config" {
+  metadata {
+    name = "cluster-config"
+  }
+
+  data = {
+    ACTIVE_PROFILE = "k8s"
+    VAULT_ENABLED  = "true"
+    VAULT_BACKEND  = "secret"
+    VAULT_URL      = "http://vault.vault:8200"
+    VAULT_ROLE_ID = "${vault_approle_auth_backend_role.app_role.role_id}"
+  }
+}

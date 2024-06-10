@@ -70,7 +70,7 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}/argocd_repo/vault_demo
           ls ${{ github.workspace }}/argocd_repo
-          cp ${{ github.workspace }}/*.yml ./argocd_repo/vault_demo  # Adjust the path as needed
+          cp ${{ github.workspace }}/*.yml ./argocd_repo/vault_demo/vault_demo.yaml  # Adjust the path as needed
 
       - name: Configure Git
         run: |
