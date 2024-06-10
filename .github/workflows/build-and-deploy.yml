@@ -61,7 +61,8 @@ jobs:
         with:
           repository: Nikhil12894/argocd_repo  # Replace with the owner and name of the target repo
           path: ./vault_demo
-
+          ref: main
+          
       - name: Copy artifacts to target repository
         run: cp ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml ./vault_demo  # Adjust the path as needed
 
