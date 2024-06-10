@@ -40,7 +40,7 @@ import io.dekorate.kubernetes.annotation.Probe;
       ),
     @Env(
         name = "VAULT_KEY",
-        secret = "vault-springboot-secrate",
+        secret = "vault-springboot-secret",
         value = "VAULT_KEY"
       ),
     @Env(
