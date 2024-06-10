@@ -55,6 +55,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifact
+      - name: Find YAML file
+        run: |
+          find ./vault_demo/dekorate_k8s_output -name '*.yml'
+          
       - name: Read data
         run: cat ${{ github.workspace }}/vault_demo/dekorate_k8s_output/kubernetes.yml
 
