@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yaml  # Adjust the path to your generated YAML file
+          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml  # Adjust the path to your generated YAML file
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
           path: ./vault_demo
 
       - name: Copy artifacts to target repository
-        run: cp ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yaml ./vault_demo  # Adjust the path as needed
+        run: cp ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml ./vault_demo  # Adjust the path as needed
 
       - name: Configure Git
         run: |
