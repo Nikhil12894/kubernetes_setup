@@ -33,6 +33,26 @@ resource "vault_generic_secret" "my_secret" {
 EOT
 }
 
+# Define a secret in Vault vault_demo/k8s
+resource "vault_generic_secret" "k8s" {
+  path      = "secret/k8s_app/vault_demo/k8s"
+  data_json = <<EOT
+{
+  "message": "A message from vault for vault_demo app with profile k8s!! :)"
+}
+EOT
+}
+
+# Define a secret in Vault for vault_demo/local
+resource "vault_generic_secret" "local" {
+  path      = "secret/k8s_app/vault_demo/local"
+  data_json = <<EOT
+{
+  "message": "A message from vault for vault_demo app with profile local!! :)"
+}
+EOT
+}
+
 # Define a policy for accessing the secret
 resource "vault_policy" "app_policy" {
   name   = "app-policy"
