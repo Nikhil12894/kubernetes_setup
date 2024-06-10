@@ -62,8 +62,8 @@ jobs:
           repository: Nikhil12894/argocd_repo  # Replace with the owner and name of the target repo
           path: ./vault_demo
           ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use the personal access token for authentication
-          
+          token: ${{ secrets.PAT_TOKEN }}  # Use the personal access token for authentication
+
       - name: Copy artifacts to target repository
         run: cp ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml ./vault_demo  # Adjust the path as needed
 
@@ -79,4 +79,4 @@ jobs:
           git commit -m "Add generated YAML file"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
