@@ -86,7 +86,7 @@ docker login ghcr.io --username github-account
     ```sh
         kubectl create secret generic <secrate_name> --from-literal=SECRET_KEY_NAME='secrate_value'
     ```
-#### or
+- or
 
     ```yml
     apiVersion: v1
