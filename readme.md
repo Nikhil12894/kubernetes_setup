@@ -49,4 +49,35 @@
 
 
 ### For Spring Boot Setup Detail Please Reffere [Vault_demo code](./vault_demo/)
+- apply [dockerconfig](vault_demo/k8s/dockerconfigjson.yaml)
+#### Create Github Image pull secrate
+- convert github token to base64 **with github username**
+```sh
+ echo -n "your-github-username:your-personal-access-token" | base64
+```
+- then use it in belo script
+
+```sh
+ echo -n  '{"auths":{"ghcr.io":{"auth":"<tocken from above command>"}}}' | base64
+```
+- now pest it in secrate file with key .dockerconfig
+    ```yml
+    kind: Secret
+    type: kubernetes.io/dockerconfigjson
+    apiVersion: v1
+    metadata:
+    name: <secrate_name>
+    labels:
+        app: <label>
+    data:
+    .dockerconfigjson: <Base64 code from abaove stape>
+    ```
+    ```sh
+    kubectl apply -f <imagepullsecratefile.yml>
+    ```
+- add GitHub repo in ArgoCd
+![Repo Setup](./images/Screenshot%202024-06-10%20at%2011.05.52 PM.png)
+- add the app in argocd
+![Repo Setup](./images/Screenshot%202024-06-10%20at%2011.08.46 PM.png)
+
 
