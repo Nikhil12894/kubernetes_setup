@@ -60,7 +60,7 @@ jobs:
           find ./vault_demo/dekorate_k8s_output -name '*.yml'
           
       - name: Read data
-        run: cat ${{ github.workspace }}/vault_demo/dekorate_k8s_output/kubernetes.yml
+        run: cat kubernetes.yml
 
       # - name: Checkout target repository
       #   uses: actions/checkout@v3
