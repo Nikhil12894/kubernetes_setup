@@ -62,14 +62,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Nikhil12894/argocd_repo  # Replace with the owner and name of the target repo
-          path: ./vault_demo
+          path: ./argocd_repo
           ref: main
           token: ${{ secrets.PAT_TOKEN }}  # Use the personal access token for authentication
 
       - name: Copy artifacts to target repository
         run: |
-          ls ${{ github.workspace }}
-          cp ${{ github.workspace }}/*.yml ./vault_demo  # Adjust the path as needed
+          mkdir ${{ github.workspace }}/argocd_repo/vault_demo
+          ls ${{ github.workspace }}/argocd_repo
+          cp ${{ github.workspace }}/*.yml ./argocd_repo/vault_demo  # Adjust the path as needed
 
       - name: Configure Git
         run: |
@@ -78,7 +79,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          cd target-repo
+          cd argocd_repo
           git add .
           git commit -m "Add generated YAML file"
           git push
