@@ -40,7 +40,7 @@ import io.dekorate.kubernetes.annotation.Probe;
       ),
     @Env(
         name = "VAULT_KEY",
-        secret = "vault-springboot-secrate",
+        secret = "vault-springboot-secret",
         value = "VAULT_KEY"
       ),
     @Env(
@@ -50,6 +50,8 @@ import io.dekorate.kubernetes.annotation.Probe;
     )
   },
   imagePullSecrets = { "dockerconfigjson-github-com" }
+  // serviceAccount="app-sa"
+  
 )
 @DockerBuild( // will use this registry and image in generated kubernetes manifest file
   registry = "ghcr.io/nikhil12894",
