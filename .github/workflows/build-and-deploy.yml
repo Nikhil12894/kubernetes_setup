@@ -41,10 +41,10 @@ jobs:
 
       - name: Archive build artifacts
         if: success()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifact
-          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/*.yml  # Adjust the path to your generated YAML file
+          path: ${{ github.workspace }}/vault_demo/dekorate_k8s_output/kubernetes.yml  # Adjust the path to your generated YAML file
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifact
       - name: Read data
