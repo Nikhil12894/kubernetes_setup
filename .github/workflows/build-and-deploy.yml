@@ -67,7 +67,9 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}  # Use the personal access token for authentication
 
       - name: Copy artifacts to target repository
-        run: cp ${{ github.workspace }}/*.yml ./vault_demo  # Adjust the path as needed
+        run: |
+          ls ${{ github.workspace }}
+          cp ${{ github.workspace }}/*.yml ./vault_demo  # Adjust the path as needed
 
       - name: Configure Git
         run: |
