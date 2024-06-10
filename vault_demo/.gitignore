@@ -36,3 +36,5 @@ build/
 
 **/appSecrete.yml
 **/dockerconfigjson.yaml
+
+dekorate_k8s_output/
