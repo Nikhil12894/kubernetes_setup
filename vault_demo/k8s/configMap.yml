@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-config
+  labels:
+    app: demo
+    tier: springboot
+data:
+  ACTIVE_PROFILE: k8s
+  VAULT_ENABLED: "true"
+  VAULT_BACKEND: secret
+  VAULT_URL: http://vault.vault:8200
+  VAULT_ROLE_ID: c8fc7a81-eb38-52f6-4996-2b8c700f18ab
