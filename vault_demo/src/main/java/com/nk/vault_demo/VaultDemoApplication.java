@@ -49,7 +49,9 @@ import io.dekorate.kubernetes.annotation.Probe;
       value = "VAULT_ROLE_ID"
     )
   },
-  imagePullSecrets = { "dockerconfigjson-github-com" }
+  imagePullSecrets = { "dockerconfigjson-github-com" },
+  // serviceAccount="app-sa"
+  
 )
 @DockerBuild( // will use this registry and image in generated kubernetes manifest file
   registry = "ghcr.io/nikhil12894",
