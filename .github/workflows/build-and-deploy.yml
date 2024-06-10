@@ -68,9 +68,9 @@ jobs:
 
       - name: Copy artifacts to target repository
         run: |
-          mkdir ${{ github.workspace }}/argocd_repo/vault_demo
+          mkdir -p ${{ github.workspace }}/argocd_repo/vault_demo
           ls ${{ github.workspace }}/argocd_repo
-          cp -f ${{ github.workspace }}/*.yml ./argocd_repo/vault_demo/kubernetes.yaml  # Adjust the path as needed
+          cp -f ${{ github.workspace }}/*.yml ./argocd_repo/vault_demo/vault_demo.yaml  # Adjust the path as needed
 
       - name: Configure Git
         run: |
