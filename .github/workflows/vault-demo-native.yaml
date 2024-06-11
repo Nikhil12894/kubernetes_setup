@@ -34,8 +34,8 @@ jobs:
         run: |
           cd vault_demo
           export SPRING_PROFILES_ACTIVE=docker
-          mvn --no-transfer-progress package
-          mvn --no-transfer-progress native:compile -Pnative
+          ./mvnw --no-transfer-progress package
+          ./mvnw --no-transfer-progress native:compile -Pnative
           ./target/vault_demo &
           sleep 5
           curl http://localhost:8081/api/v1
