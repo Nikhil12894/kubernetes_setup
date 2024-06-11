@@ -15,12 +15,13 @@ permissions:
   contents: read
 jobs:
   run:
-    name: Run 'spring-native-graal'
-    runs-on: ubuntu-latest
+    name: Run 'spring-native-graal' Build artifact on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     strategy:
       matrix:
         java-version: ['21']
+        os: ['ubuntu-latest','macOS-latest']
     steps:
       - uses: actions/checkout@v4
       - uses: graalvm/setup-graalvm@v1
