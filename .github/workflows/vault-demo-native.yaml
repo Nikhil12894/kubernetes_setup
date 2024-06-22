@@ -1,0 +1,42 @@
+name: spring-native-image
+on:
+  push:
+    paths:
+      - 'vault_demo/**'
+      - '.github/workflows/vault-demo-native.yaml'
+  pull_request:
+    paths:
+      - 'vault_demo/**'
+      - '.github/workflows/vault-demo-native.yaml'
+  schedule:
+    - cron: "0 0 1 * *" # run every month
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  run:
+    name: Run 'spring-native-graal' Build artifact on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        java-version: ['21']
+        os: ['ubuntu-latest','macOS-latest']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
+          native-image-job-reports: 'true'
+      - name: Run 'spring-native-image'
+        run: |
+          cd vault_demo
+          export SPRING_PROFILES_ACTIVE=docker
+          ./mvnw --no-transfer-progress package
+          ./mvnw --no-transfer-progress native:compile -Pnative
+          ./target/vault_demo &
+          sleep 5
+          curl http://localhost:8081/api/v1

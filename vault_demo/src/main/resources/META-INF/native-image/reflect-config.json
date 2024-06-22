@@ -1,0 +1,8 @@
+[
+    {
+      "name": "org.springframework.cloud.vault.config.VaultProperties",
+      "allDeclaredConstructors": true,
+      "allDeclaredMethods": true
+    }
+  ]
+  

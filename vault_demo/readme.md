@@ -26,7 +26,7 @@ spring.config.import=optional:file:config/local.properties,optional:vault://${sp
 ```
 
 
-- For Creating Kubernetes menifest file I used dekorate depengency then used that
+- For Creating Kubernetes manifest file I used dekorate dependency then used that
 to deploy it on kubernetes cluster.
 
     ```xml
@@ -58,24 +58,24 @@ docker login ghcr.io --username github-account
 ```
 
 
-#### Create Github Image pull secrate
+#### Create Github Image pull secrete
 
 - convert github token to base64 **with github username**
 ```sh
  echo -n "your-github-username:your-personal-access-token" | base64
 ```
-- then use it in belo script
+- then use it in below script
 
 ```sh
- echo -n  '{"auths":{"ghcr.io":{"auth":"<tocken from above command>"}}}' | base64
+ echo -n  '{"auths":{"ghcr.io":{"auth":"<token from above command>"}}}' | base64
 ```
-- now pest it in secrate file with key .dockerconfig
+- now pest it in secrete file with key .dockerconfig
     ```yml
     kind: Secret
     type: kubernetes.io/dockerconfigjson
     apiVersion: v1
     metadata:
-    name: <secrate_name>
+    name: <secrete_name>
     labels:
         app: <label>
     data:
@@ -85,10 +85,10 @@ docker login ghcr.io --username github-account
 
 #### Deploy My App To Kubernetes
 
-- first create vault secrate for **secret-id**
+- first create vault secrete for **secret-id**
 
     ```sh
-        kubectl create secret generic <secrate_name> --from-literal=SECRET_KEY_NAME='secrate_value'
+        kubectl create secret generic <secrete_name> --from-literal=SECRET_KEY_NAME='secrete_value'
     ```
 - or
 
@@ -98,7 +98,7 @@ docker login ghcr.io --username github-account
         SECRET_KEY_NAME: <base64 encoded value>
     kind: Secret
     metadata:
-        name: <secrate_name>
+        name: <secrete_name>
         namespace: default
     type: Opaque
     ```
@@ -120,7 +120,7 @@ docker login ghcr.io --username github-account
     VAULT_ROLE_ID: c8fc7a81-eb38-52f6-4996-2b8c700f18ab
     ```
 
-- now run belo command and use kubernetes.yml to deploy the app to kubernetes
+- now run below command and use kubernetes.yml to deploy the app to kubernetes
 	```sh
 	./mvnw clean package
 	```
