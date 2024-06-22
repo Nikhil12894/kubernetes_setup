@@ -43,41 +43,42 @@
 
 #### Second apply terraform from [Configure_Vault_AppRole](./Configure_Vault_AppRole/)
 
-#### Then to print app role and secrate id run command fro [this file](./Configure_Vault_AppRole/readme.md)
+#### Then to print app role and secrete id run command fro [this file](./Configure_Vault_AppRole/readme.md)
 
 ---
 
 
 ### For Spring Boot Setup Detail Please Reffere [Vault_demo code](./vault_demo/)
 - apply [dockerconfig](vault_demo/k8s/dockerconfigjson.yaml)
-#### Create Github Image pull secrate
+#### Create Github Image pull secrete
 - convert github token to base64 **with github username**
 ```sh
  echo -n "your-github-username:your-personal-access-token" | base64
 ```
-- then use it in belo script
+- then use it in below script
 
 ```sh
- echo -n  '{"auths":{"ghcr.io":{"auth":"<tocken from above command>"}}}' | base64
+ echo -n  '{"auths":{"ghcr.io":{"auth":"<token from above command>"}}}' | base64
 ```
-- now pest it in secrate file with key .dockerconfig
+- now create a file *imagepullsecratefile.yml* or what ever yoy want
+- now past it in secrete file with key .dockerconfig
     ```yml
     kind: Secret
     type: kubernetes.io/dockerconfigjson
     apiVersion: v1
     metadata:
-    name: <secrate_name>
+    name: <secrete_name>
     labels:
         app: <label>
     data:
-    .dockerconfigjson: <Base64 code from abaove stape>
+    .dockerconfigjson: <Base64 code from above step>
     ```
     ```sh
     kubectl apply -f <imagepullsecratefile.yml>
     ```
 - add GitHub repo in ArgoCd
-![Repo Setup](./images/Screenshot%202024-06-10%20at%2011.05.52 PM.png)
+![Repo Setup](./images/add_repo_in_argocd.png)
 - add the app in argocd
-![Repo Setup](./images/Screenshot%202024-06-10%20at%2011.08.46 PM.png)
+![Repo Setup](./images/add_app_in_argocd.png)
 
 
